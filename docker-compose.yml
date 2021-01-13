@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  composer:
+    image: composer:2.0
+    volumes:
+      - ./backend:/work/backend
+    working_dir: /work/backend
+
+  app:
+    image: php:7.4-cli-buster
+    ports:
+      - 8000:8000
+    volumes:
+      - ./backend:/work/backend
+    working_dir: /work/backend
+    command: php artisan serve --host=0.0.0.0
